@@ -2,8 +2,7 @@ package Trees;
 
 import java.util.ArrayList;
 import java.util.HashSet;
-
-import jdk.internal.jshell.tool.resources.l10n;
+import java.util.Stack;
 
 public class Basics_2 {
 
@@ -28,6 +27,20 @@ public class Basics_2 {
 
     // Burning tree Node
 
+    boolean nodeToRoot_BT(TreeNode root, ArrayList<TreeNode> res, int target) {
+        if (root == null)
+            return false;
+        if (root.val == target) {
+            res.add(root);
+            return true;
+        }
+        boolean ans = nodeToRoot_BT(root.left, res, target) || nodeToRoot_BT(root.right, res, target);
+        if (ans) {
+            res.add(root);
+        }
+        return ans;
+    }
+
     ArrayList<ArrayList<Integer>> BurningTreeNodes(TreeNode root, TreeNode target) {
 
         if (root == null)
@@ -35,7 +48,7 @@ public class Basics_2 {
         ArrayList<TreeNode> ans = new ArrayList<>();
         ArrayList<ArrayList<Integer>> res = new ArrayList<>();
 
-        nodeToRoot(root, ans, target);
+        nodeToRoot_BT(root, ans, target.val);
         TreeNode blocked = null;
         for (int i = 0; i < ans.size(); i++) {
 
@@ -86,7 +99,7 @@ public class Basics_2 {
         ArrayList<TreeNode> ans = new ArrayList<>();
         ArrayList<ArrayList<Integer>> res = new ArrayList<>();
 
-        nodeToRoot(root, ans, target);
+        nodeToRoot_BT(root, ans, target.val);
         TreeNode blocked = null;
         for (int i = 0; i < ans.size(); i++) {
 
@@ -218,10 +231,12 @@ public class Basics_2 {
 
     }
 
+    ArrayList<Integer> nodeToRootPath(TreeNode root, int tar) {
+        if (root == null)
+            return new ArrayList<>();
+        ArrayList<Integer> ans = new ArrayList<>();
 
-    ArrayList<Integer> nodeToRootPath(TreeNode root, int tar){
-        if(root==null) return new ArrayList<>();
-        ArrayList<Integer> ans=new ArrayList<>();
-        
+
+       
     }
 }
